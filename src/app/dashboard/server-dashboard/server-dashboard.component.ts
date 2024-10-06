@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-dashboard',
@@ -10,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class ServerDashboardComponent implements OnInit {
   currentStatus: 'online' | 'offline' | 'unknown' = 'online';
 
+  // private interval ?: ReturnType<typeof setInterval>
+
+  private destroyRef = inject(DestroyRef)
+
+
   constructor() {}
 
   ngOnInit() {
-    setInterval(() => {
+    const interval = setInterval(() => {
 
       const rnd = Math.random();
 
@@ -26,5 +31,13 @@ export class ServerDashboardComponent implements OnInit {
       }
 
     }, 3000)
+
+    this.destroyRef.onDestroy(() => {
+      clearTimeout(interval)
+    })
   }
+
+  // ngOnDestroy() {
+  //   clearTimeout(this.interval)
+  // }
 }
