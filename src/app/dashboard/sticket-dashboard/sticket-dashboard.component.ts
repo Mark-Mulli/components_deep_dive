@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NewTicketComponent } from "./new-ticket/new-ticket.component";
 import { ticket } from '../../shared/ticket.model';
+import { TicketComponent } from "./ticket/ticket.component";
 
 @Component({
   selector: 'app-sticket-dashboard',
   standalone: true,
-  imports: [NewTicketComponent],
+  imports: [NewTicketComponent, TicketComponent],
   templateUrl: './sticket-dashboard.component.html',
   styleUrl: './sticket-dashboard.component.css'
 })
