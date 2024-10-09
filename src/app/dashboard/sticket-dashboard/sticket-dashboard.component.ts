@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NewTicketComponent } from "./new-ticket/new-ticket.component";
+import { ticket } from '../../shared/ticket.model';
 
 @Component({
   selector: 'app-sticket-dashboard',
@@ -10,4 +11,17 @@ import { NewTicketComponent } from "./new-ticket/new-ticket.component";
 })
 export class SticketDashboardComponent {
 
+  tickets: ticket[] = []
+
+  onAdd(ticketdata: {title: string, text:string}) {
+    const ticket: ticket = {
+      title: ticketdata.title,
+      request: ticketdata.text,
+      id: Math.random().toString(),
+      status: 'open'
+    }
+
+    this.tickets.push(ticket)
+
+  }
 }
